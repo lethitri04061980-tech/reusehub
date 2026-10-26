@@ -1,6 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 import { NextResponse } from "next/server";
-import { currentUser } from "@/lib/auth";
+import { currentUser } from "../../../lib/auth";
 export const runtime = "nodejs";
 function db(){const url=process.env.DATABASE_URL;if(!url)throw new Error("DATABASE_URL is not configured");return neon(url)}
 export async function GET(){try{const sql=db();const rows=await sql`SELECT id,title,description,category,kind,location,status,created_at FROM public.items ORDER BY created_at DESC LIMIT 100`;return NextResponse.json(rows)}catch(e){console.error(e);return NextResponse.json({error:"Không thể tải tin đăng."},{status:500})}}
