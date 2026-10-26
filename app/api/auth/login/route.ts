@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 import { scrypt as scryptCallback } from "node:crypto";
 import { promisify } from "node:util";
-import { signSession, sessionCookieName, sessionCookieOptions } from "@/lib/auth";
+import { signSession, sessionCookieName, sessionCookieOptions } from "../../../../lib/auth";
 export const runtime = "nodejs";
 const scrypt = promisify(scryptCallback);
 function db(){if(!process.env.DATABASE_URL)throw new Error("DATABASE_URL missing");return neon(process.env.DATABASE_URL)}
